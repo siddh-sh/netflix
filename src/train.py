@@ -1,5 +1,6 @@
 """Train a classifier that predicts whether a title is a Movie or a TV Show
-from its description and genres."""
+from its description. Genres are deliberately excluded: values such as
+"TV Comedies" leak the label."""
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -19,7 +20,7 @@ METRICS_PATH = MODEL_DIR / "metrics.json"
 
 
 def build_text(df):
-    return df["description"] + " " + df["listed_in"]
+    return df["description"]
 
 
 def build_pipeline() -> Pipeline:

@@ -97,12 +97,11 @@ elif page == "Explore":
 
 else:
     st.subheader("Predict Movie vs TV Show")
-    st.write("A TF-IDF + Logistic Regression model trained on title descriptions and genres.")
+    st.write("A TF-IDF + Logistic Regression model trained on title descriptions.")
     description = st.text_area("Description", "A group of friends navigate love and life across several seasons.")
-    genres = st.text_input("Genres", "TV Comedies, Romantic TV Shows")
     if st.button("Predict"):
         start = time.perf_counter()
-        proba = model.predict_proba([f"{description} {genres}"])[0]
+        proba = model.predict_proba([description])[0]
         monitoring.PREDICTION_LATENCY.observe(time.perf_counter() - start)
         idx = proba.argmax()
         label = model.classes_[idx]
