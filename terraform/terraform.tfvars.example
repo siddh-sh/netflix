@@ -1,0 +1,4 @@
+project             = "netflix-mlops"
+region              = "us-east-1"
+node_instance_types = ["t3.medium"]
+node_desired_size   = 2
