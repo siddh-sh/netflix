@@ -3,8 +3,8 @@ services:
     build: .
     image: netflix-mlops:latest
     ports:
-      - "8501:8501"
-      - "8000:8000"
+      - "${APP_PORT:-8501}:8501"
+      - "${METRICS_HOST_PORT:-8000}:8000"
     restart: unless-stopped
 
   prometheus:
@@ -12,7 +12,7 @@ services:
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
-      - "9090:9090"
+      - "${PROMETHEUS_PORT:-9090}:9090"
     depends_on:
       - app
 
@@ -25,6 +25,6 @@ services:
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
       - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
     ports:
-      - "3000:3000"
+      - "${GRAFANA_PORT:-3000}:3000"
     depends_on:
       - prometheus

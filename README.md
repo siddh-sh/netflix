@@ -34,6 +34,9 @@ docker compose up --build
 - Prometheus: http://localhost:9090
 - Grafana: http://localhost:3000 (admin / admin) — "Netflix MLOps" dashboard is pre-provisioned
 
+If a port is taken, override the host ports: `APP_PORT`, `METRICS_HOST_PORT`, `PROMETHEUS_PORT`, `GRAFANA_PORT`
+(e.g. `APP_PORT=18501 GRAFANA_PORT=13000 docker compose up -d`).
+
 Metrics exported: page views, prediction counts by label, prediction latency,
 prediction confidence, model accuracy/F1, dataset size.
 
